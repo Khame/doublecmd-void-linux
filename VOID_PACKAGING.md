@@ -43,7 +43,7 @@ their language data are installed, not the plugin sources.
 
 Dependencies:
 
-- `hostmakedepends="fpc lazarus"` — the compilers, run on the build host.
+- `hostmakedepends="fpc lazarus"` — the compilers, which run on the build host.
 - `makedepends="qt5pas-devel qt5-tools-devel qt5-svg-devel openssl-devel"` —
   the widgetset bindings and the SSL library DC links against.
 - `depends="qt5pas qt5-wayland hicolor-icon-theme"`. `qt5-wayland` is a hard
@@ -73,8 +73,9 @@ ships no test suite for the GUI program.
 1. Compare the upstream release with `version=` in the template. If it has not
    changed, stop here.
 2. Update `version=` and `checksum=`, and go through `PATCHES.md`: a new
-   upstream version may make patches obsolete or make more API necessary.
-   Patch 0007 especially can hide new Lazarus 3.0 API as compile errors, so a
+   upstream version may make patches obsolete or need more API. Patch 0007
+   removes the LCL version floor, so new 3.0 API would no longer be caught
+   by the dependency check and would only show up as a compile error — a
    version bump needs a full compile, not just a checksum update.
 3. Raise `revision=` when only the template or the patches change.
 4. Run `xlint srcpkgs/doublecmd/template` and fix everything it reports.
@@ -116,8 +117,9 @@ key from the index on the first `xbps-install -S` and stores it as
 `35:2b:06:7c:52:04:76:b1:4a:de:a0:8b:49:9c:e2:66.plist`. I never support
 `allow-unsigned`.
 
-`x86_64-repodata` has no signature of its own. `xbps` checks each package
-against the imported key. Only x86_64 is published.
+`x86_64-repodata` is signed and carries the public key; `xbps-install -S`
+verifies it and imports the key from it. Each package additionally has its
+own `.sig2`. Only x86_64 is published.
 
 ## Things that bit me
 

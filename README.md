@@ -78,9 +78,10 @@ Do this when you want to change the template or build another revision.
 
 The `doublecmd` binary in `/usr/lib/doublecmd/` with `/usr/bin/doublecmd`
 pointing at it, the WCX/WDX/WFX/WLX/DSX plugins (zip, sevenzip, unrar, deb,
-rpm, cpio, base64, audioinfo, ftp, samba, mplayer, locate), the Polish and
-other translations, the syntax highlighters, the icon theme, the manual page,
-the desktop entry and the polkit action for running as root.
+rpm, cpio, base64, rpm_wdx, deb_wdx, audioinfo, ftp, samba, wlxmplayer,
+dsxlocate), the Polish and other translations, the syntax highlighters, the
+icon theme, the manual page, the desktop entry and the polkit action for
+running as root.
 
 The Qt5 widgetset is used, so the program depends on `qt5pas`. Wayland is
 native through `qt5-wayland`; X11 sessions use xcb.
@@ -94,8 +95,8 @@ Eleven patches, all forced by the older toolchain:
 2. `FS_IOC_GETFLAGS` is `$80086601`, too large for FPC 3.2.0's signed
    `TIOCtlRequest`. The patch keeps the bit pattern as a `LongInt`.
 3. FPC 3.2.0 has no `StrToUIntDef`; the patch adds a local one.
-4. and 10. `TSpeedButton.Alignment` needs Lazarus 3.0. The toolbar label
-   draws left-aligned anyway, so that is the fixed value.
+4. and 10. two `TSpeedButton.Alignment` assignments need Lazarus 3.0. Both
+   controls default to left-aligned, so that is the fixed value.
 5. and 6. The bundled JCL and the sevenzip plugin declare `IInterface`
    methods as `winapi`, which FPC 3.2.0 on Linux rejects against the `cdecl`
    RTL declaration.
@@ -120,9 +121,9 @@ tried. Qt5 comes in through the package dependencies.
 
 ASUS ROG Strix G513QM: Ryzen 9 5900HX, Radeon Vega plus RTX 3060 Mobile,
 16 GB RAM. Void x86_64 with glibc, XBPS 0.60.7, runit, Plasma 6.7.5 on
-Wayland. Double Commander 1.2.9 starts there natively on Wayland, browses,
-packs and unpacks archives through the bundled plugins, and survives
-suspend/resume.
+Wayland. Double Commander 1.2.9 starts there natively on Wayland, and the
+plugins, translations and icon theme install and load. Archive packing and
+unpacking, and suspend/resume, were not exercised.
 
 ## Repository layout
 
