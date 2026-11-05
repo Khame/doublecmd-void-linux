@@ -48,7 +48,7 @@ Updates come with `sudo xbps-install -Su`. Only x86_64 is built.
 Import the key first, then:
 
 ```sh
-sudo xbps-install --binary-package-url https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.9/doublecmd-1.2.9_1.x86_64.xbps
+sudo xbps-install --binary-package-url https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.9/doublecmd-1.2.9_2.x86_64.xbps
 ```
 
 This is for one install. Updates are manual. The release also has the `.sig2`
@@ -139,7 +139,7 @@ The build files are not copied here. The single copy is
 Project: [doublecmd/doublecmd](https://github.com/doublecmd/doublecmd),
 [homepage](https://doublecmd.sourceforge.io/)
 
-Packaged version: `1.2.9_1` (upstream release tarball, not a git snapshot)
+Packaged version: `1.2.9_2` (upstream release tarball, not a git snapshot)
 
 License: GPL-2.0-or-later
 
