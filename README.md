@@ -38,8 +38,16 @@ The key sits inside the signed index, so xbps imports it without an extra
 step. It ends up as
 `/var/db/xbps/keys/35:2b:06:7c:52:04:76:b1:4a:de:a0:8b:49:9c:e2:66.plist`.
 The same key is published as
-[Khame-void-repo.pub](https://khame.github.io/void-packages/Khame-void-repo.pub)
-if you want to compare it yourself.
+[Khame-void-repo.pub](https://khame.github.io/void-packages/Khame-void-repo.pub),
+and you can compute the fingerprint from it:
+
+```sh
+curl -fsSO https://khame.github.io/void-packages/Khame-void-repo.pub
+ssh-keygen -E md5 -lf <(ssh-keygen -i -m PKCS8 -f Khame-void-repo.pub)
+```
+
+The result should match the fingerprint above. It shows the key and the
+fingerprint belong together, though both come from the same site.
 
 Updates come with `sudo xbps-install -Su`. Only x86_64 is built.
 
