@@ -59,9 +59,9 @@ the index carries the key. Then download the package together with its
 signature and register it as a local repository:
 
 ```sh
-curl -fsSLO https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.11/doublecmd-1.2.11_1.x86_64.xbps
-curl -fsSLO https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.11/doublecmd-1.2.11_1.x86_64.xbps.sig2
-xbps-rindex -a doublecmd-1.2.11_1.x86_64.xbps
+curl -fsSLO https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.11/doublecmd-1.2.11_2.x86_64.xbps
+curl -fsSLO https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.11/doublecmd-1.2.11_2.x86_64.xbps.sig2
+xbps-rindex -a doublecmd-1.2.11_2.x86_64.xbps
 sudo xbps-install -R "$PWD" -f doublecmd
 ```
 
@@ -156,7 +156,7 @@ The build files are not copied here. The single copy is
 Project: [doublecmd/doublecmd](https://github.com/doublecmd/doublecmd),
 [homepage](https://doublecmd.sourceforge.io/)
 
-Packaged version: `1.2.11_1` (upstream release tarball, not a git snapshot)
+Packaged version: `1.2.11_2` (upstream release tarball, not a git snapshot)
 
 License: GPL-2.0-or-later
 
