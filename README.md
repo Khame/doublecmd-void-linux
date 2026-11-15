@@ -137,11 +137,10 @@ tried. Qt5 comes in through the package dependencies.
 
 ASUS ROG Strix G513QM: Ryzen 9 5900HX, Radeon Vega plus RTX 3060 Mobile,
 16 GB RAM. Void x86_64 with glibc, XBPS 0.60.7, runit, Plasma 6.7.5 on
-Wayland. The 1.2.11 binary built here reports version 1.2.11 gamma and starts
-with the Qt5 widgetset under `QT_QPA_PLATFORM=offscreen`; 1.2.9 started
-natively on Wayland on the same machine. The plugins, translations and icon
-theme install and load. Archive packing and unpacking, and suspend/resume, were
-not exercised.
+Wayland. Double Commander 1.2.11 starts natively on Wayland there and reports
+Qt 5.15.11 as the widgetset library; the plugins, translations and icon theme
+install and load. Archive packing and unpacking, and suspend/resume, were not
+exercised.
 
 ## Repository layout
 
