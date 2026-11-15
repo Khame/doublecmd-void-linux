@@ -96,10 +96,14 @@ ships no test suite for the GUI program.
    ```sh
    rm -f docs/doublecmd-*.xbps docs/doublecmd-*.xbps.sig2
    cp "$pkg" "$pkg.sig2" docs/
+   xbps-rindex -c docs
    xbps-rindex -a "docs/$(basename "$pkg")"
    xbps-rindex -s --privkey="$HOME/.config/Khame-void-repo-private.pem" \
      --signedby="Khame <khame.dev@protonmail.com>" docs
    ```
+
+   `-c` drops index entries whose files were just deleted. Without it the old
+   version stays in the index and points at a package that no longer exists.
 
 8. Commit and push `Khame/void-packages`. GitHub Pages serves `docs/` from
    `main`, so the repository appears at

@@ -7,12 +7,12 @@ Void actually ships.
 ## Why this exists
 
 Void has no `doublecmd` package. The reason is the toolchain, not the program:
-Double Commander 1.2.9 asks for FPC >= 3.2.2 and Lazarus >= 3.0, and Void ships
+Double Commander 1.2.11 asks for FPC >= 3.2.2 and Lazarus >= 3.0, and Void ships
 `fpc 3.2.0` with `lazarus 2.2.0`. The
 [package request](https://github.com/void-linux/void-packages/issues/23964)
 has been open since 2020 with no merged template.
 
-This package closes the gap with eleven small patches that keep 1.2.9
+This package closes the gap with eleven small patches that keep 1.2.11
 buildable on the older compiler and widgetset. None of them changes what the
 program does; what each one changes and when it can be dropped is documented
 in `PATCHES.md` in the packaging repository.
@@ -53,15 +53,23 @@ Updates come with `sudo xbps-install -Su`. Only x86_64 is built.
 
 ### Release asset
 
-Import the key first, then:
+xbps has to know the signing key before it accepts the package. Adding the
+repository above and running `xbps-install -S` once is the shortest way, since
+the index carries the key. Then download the package together with its
+signature and register it as a local repository:
 
 ```sh
-sudo xbps-install --binary-package-url https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.9/doublecmd-1.2.9_2.x86_64.xbps
+curl -fsSLO https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.11/doublecmd-1.2.11_1.x86_64.xbps
+curl -fsSLO https://github.com/Khame/doublecmd-void-linux/releases/download/v1.2.11/doublecmd-1.2.11_1.x86_64.xbps.sig2
+xbps-rindex -a doublecmd-1.2.11_1.x86_64.xbps
+sudo xbps-install -R "$PWD" -f doublecmd
 ```
 
-This is for one install. Updates are manual. The release also has the `.sig2`
-file and the public key, fingerprint
-`35:2b:06:7c:52:04:76:b1:4a:de:a0:8b:49:9c:e2:66`.
+XBPS 0.60.7 has no option for installing a package straight from a URL, so the
+local index is not optional. Keep the `.sig2` next to the package; xbps checks
+it during install. This covers one install and updates stay manual, so the
+signed repository is the better default. The release also carries the public
+key, fingerprint `35:2b:06:7c:52:04:76:b1:4a:de:a0:8b:49:9c:e2:66`.
 
 ### From source
 
@@ -129,9 +137,11 @@ tried. Qt5 comes in through the package dependencies.
 
 ASUS ROG Strix G513QM: Ryzen 9 5900HX, Radeon Vega plus RTX 3060 Mobile,
 16 GB RAM. Void x86_64 with glibc, XBPS 0.60.7, runit, Plasma 6.7.5 on
-Wayland. Double Commander 1.2.9 starts there natively on Wayland, and the
-plugins, translations and icon theme install and load. Archive packing and
-unpacking, and suspend/resume, were not exercised.
+Wayland. The 1.2.11 binary built here reports version 1.2.11 gamma and starts
+with the Qt5 widgetset under `QT_QPA_PLATFORM=offscreen`; 1.2.9 started
+natively on Wayland on the same machine. The plugins, translations and icon
+theme install and load. Archive packing and unpacking, and suspend/resume, were
+not exercised.
 
 ## Repository layout
 
@@ -147,7 +157,7 @@ The build files are not copied here. The single copy is
 Project: [doublecmd/doublecmd](https://github.com/doublecmd/doublecmd),
 [homepage](https://doublecmd.sourceforge.io/)
 
-Packaged version: `1.2.9_2` (upstream release tarball, not a git snapshot)
+Packaged version: `1.2.11_1` (upstream release tarball, not a git snapshot)
 
 License: GPL-2.0-or-later
 
